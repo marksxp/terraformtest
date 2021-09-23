@@ -21,21 +21,7 @@ steps:
     backendAzureRmKey: 'terraform.tfstate'
     allowTelemetryCollection: true
 - task: TerraformCLI@0
-  displayName: 'validate'
   inputs:
-    command: 'validate'
-    allowTelemetryCollection: true
-- task: TerraformCLI@0
-  displayName: 'plan'
-  inputs:
-    command: 'plan'
+    command: 'destroy'
     environmentServiceName: 'azure-service-connection'
-    commandOptions: '-destroy -out main.destroy.tfplan'
-    allowTelemetryCollection: true
-- task: TerraformCLI@0
-  displayName: 'apply'
-  inputs:
-    command: 'apply'
-    environmentServiceName: 'azure-service-connection'
-    commandOptions: 'main.destroy.tfplan'
     allowTelemetryCollection: true
