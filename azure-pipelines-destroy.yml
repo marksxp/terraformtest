@@ -18,7 +18,7 @@ steps:
     backendAzureRmResourceGroupName: 'sxp-terraform-rg'
     backendAzureRmStorageAccountName: 'sxpstorageaccount1'
     backendAzureRmContainerName: 'sxpstoragecontainer'
-    backendAzureRmKey: 'terraform.tfstate'
+    backendAzureRmKey: 'terraform2.tfstate'
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
