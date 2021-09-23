@@ -4,7 +4,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "example" {
   name     = "MyResourceGroup"
-  location = "East US"
+  location = "eastus"
 }
 
 resource "azurerm_kubernetes_cluster" "example" {
