@@ -10,18 +10,17 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: TerraformCLI@0
+- task: TerraformTaskV2@2
   inputs:
+    provider: 'azurerm'
     command: 'init'
-    backendType: 'azurerm'
     backendServiceArm: 'azure-service-connection'
     backendAzureRmResourceGroupName: 'sxp-terraform-rg'
     backendAzureRmStorageAccountName: 'sxpstorageaccount1'
     backendAzureRmContainerName: 'sxpstoragecontainer'
     backendAzureRmKey: 'terraform.tfstate'
-    allowTelemetryCollection: true
-- task: TerraformCLI@0
+- task: TerraformTaskV2@2
   inputs:
+    provider: 'azurerm'
     command: 'destroy'
-    environmentServiceName: 'azure-service-connection'
-    allowTelemetryCollection: true
+    environmentServiceNameAzureRM: 'azure-service-connection'
