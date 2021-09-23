@@ -11,24 +11,31 @@ pool:
 
 steps:
 - task: TerraformCLI@0
-  displayName: 'init'
   inputs:
     command: 'init'
     backendType: 'azurerm'
-    ensureBackend: true
+    backendServiceArm: 'azure-service-connection'
     backendAzureRmResourceGroupName: 'sxp-terraform-rg'
-    backendAzureRmResourceGroupLocation: 'eastus'
     backendAzureRmStorageAccountName: 'sxpstorageaccount1'
     backendAzureRmContainerName: 'sxpstoragecontainer'
     backendAzureRmKey: 'terraform.tfstate'
     allowTelemetryCollection: true
 - task: TerraformCLI@0
+  displayName: 'validate'
+  inputs:
+    command: 'validate'
+    allowTelemetryCollection: true
+- task: TerraformCLI@0
   displayName: 'plan'
   inputs:
     command: 'plan'
+    environmentServiceName: 'azure-service-connection'
+    commandOptions: '-out main.apply.tfplan'
     allowTelemetryCollection: true
 - task: TerraformCLI@0
   displayName: 'apply'
   inputs:
     command: 'apply'
+    environmentServiceName: 'azure-service-connection'
+    commandOptions: 'main.apply.tfplan'
     allowTelemetryCollection: true
